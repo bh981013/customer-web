@@ -1,0 +1,37 @@
+.footer {
+    text-align: center;
+    background-color: var(--font-color);
+    position: relative;
+    color: white;
+}
+
+
+/*
+대각선 만드려다가 실패함
+.footer::after {
+    display: inline-block;
+    position: absolute;
+    content: "";
+    padding: 0px;
+    left: -20px;
+    top: 20px;
+    width: 150px;
+    height: 2px;
+    transform: rotate(30deg);
+    background-color: black;
+}
+*/
+
+.footer * {
+    margin: 10px;
+}
+
+.footer p:first-child {
+    padding-top: 40px;
+    margin-top: 0px;
+}
+
+.footer p:last-child {
+    padding-bottom: 40px;
+    margin-bottom: 0px;
+}

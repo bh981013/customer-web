@@ -1,0 +1,198 @@
+.apply {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    --dropdown-position: 80px;
+    --dropdown-menu-height: 62px;
+}
+
+.apply .main {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 48px;
+    margin: 60px;
+    word-break: keep-all;
+    text-align: center;
+}
+
+.apply .apply-box {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 750px;
+    height: 500px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 500px 1fr;
+    grid-template-areas: ". content .";
+}
+
+@media (max-width: 800px) {
+    .apply .apply-box {
+        width: 95%;
+    }
+}
+
+.apply .virtual-div {
+    grid-area: content;
+}
+
+.apply .apply-part {
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.apply .apply-part .sub-title {
+    text-align: left;
+}
+
+.apply .apply-part:hover {
+    cursor: pointer;
+}
+
+.apply .apply-part .select-part {
+    width: 100%;
+    height: var(--dropdown-menu-height);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #9D9D9D;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ECEEF5;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+@media (max-width: 800px) {
+    .apply .apply-part .select-part {}
+}
+
+.apply .apply-part .spec-part {
+    width: calc(100% - 17px);
+    height: var(--dropdown-menu-height);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 62px;
+    color: #9D9D9D;
+    border: 1px solid #ECEEF5;
+    padding-left: 15px;
+    text-align: left;
+}
+
+.apply .apply-part .select-part__HC {
+    position: absolute;
+    top: calc(var(--dropdown-menu-height) + var(--dropdown-position));
+    z-index: 2;
+    background-color: white;
+    border-bottom: 2px solid black;
+    display: none;
+}
+
+.apply .apply-part .select-part__MC {
+    position: absolute;
+    top: calc(2* var(--dropdown-menu-height) + var(--dropdown-position));
+    z-index: 2;
+    background-color: white;
+    border-bottom: 2px solid black;
+    display: none;
+}
+
+.apply .apply-part .select-part__DB {
+    position: absolute;
+    top: calc(3 *var(--dropdown-menu-height) + var(--dropdown-position));
+    z-index: 2;
+    background-color: white;
+    display: none;
+}
+
+.select-part-dropdown {}
+
+.spec-part-dropdown {
+    width: 350px;
+}
+
+.apply .apply-part .select-part>img {
+    width: 27px;
+    height: 27px;
+    margin: 5px;
+}
+
+.apply .name {
+    margin-top: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50%;
+}
+
+.apply .phone {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 49%;
+}
+
+@media (max-width: 800px) {
+    .apply .apply-us>.phone {}
+}
+
+.apply .name input,
+.apply .phone input {
+    width: 228px;
+    height: var(--dropdown-menu-height);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    border: 1px solid #ECEEF5;
+    box-sizing: border-box;
+    padding-left: 13px;
+    border-radius: 5px;
+}
+
+.apply .phone {
+    padding-left: 15px;
+}
+
+@media (max-width: 800px) {
+    .apply .name input,
+    .apply .phone input {}
+}
+
+.apply input::placeholder {
+    padding-left: 5px;
+}
+
+.apply .agree {
+    margin-top: 50px;
+    font-weight: 400;
+    font-size: 16px;
+    height: 24px;
+    text-align: center;
+}
+
+.apply .agree [type="checkbox"] {
+    padding-top: 4px;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 5px;
+    cursor: pointer;
+}
+
+.apply .agree .text {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.apply .submit {
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    width: 450px;
+    height: 60px;
+    color: white;
+    background: var(--theme-color);
+    border-radius: 8px;
+}
