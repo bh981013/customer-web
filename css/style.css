@@ -5,7 +5,7 @@
 @import url("footer.css");
 :root {
     --back-color: white;
-    --theme-color: #E4BB7D;
+    --theme-color: #834E00;
     --font-color: #414141;
     scroll-behavior: smooth;
     -ms-user-select: none;
@@ -14,6 +14,7 @@
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     user-select: none;
+    font-family: 'Noto Sans KR';
 }
 
 body {
@@ -28,11 +29,4 @@ button {
 
 button:hover {
     cursor: pointer;
-}
-
-@font-face {
-    font-family: 'SDSamliphopangche_Outline';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 }

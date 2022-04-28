@@ -7,7 +7,6 @@
     display: grid;
     grid-template-columns: 1fr 9fr;
     grid-template-areas: ". content";
-    z-index: 1;
 }
 
 
@@ -61,8 +60,8 @@
     font-weight: 400;
     font-size: 24px;
     line-height: 35px;
-    margin-top: 10px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 @media (max-width:800px) {
@@ -78,20 +77,20 @@
     grid-area: btn;
 }
 
-.header button {
+.header__btn button {
     border: white;
-    border-radius: 3px;
-}
-
-.header__btn .btn1 {
-    width: 189px;
-    height: 48px;
+    border-radius: 8px;
+    width: 245px;
+    height: 65px;
     color: white;
     background-color: var(--theme-color);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 35px;
 }
 
 @media (max-width: 800px) {
-    .header__btn .btn1 {
+    .header__btn button {
         margin-top: 20px;
         width: 330px;
     }

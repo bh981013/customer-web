@@ -135,3 +135,9 @@ document.querySelector(".contact .agree .text").addEventListener("click", () => 
     if (checkBox.checked) checkBox.checked = false;
     else checkBox.checked = true;
 })
+
+
+class AutonomousButton extends HTMLElement {
+
+}
+customElements.define("autonomous-button", AutonomousButton);
