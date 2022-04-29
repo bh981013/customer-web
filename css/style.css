@@ -21,6 +21,7 @@ body {
     margin: 0px;
     padding: 0px;
     color: var(--font-color);
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 button {

@@ -26,10 +26,11 @@
 
 @media (max-width:800px) {
     .header {
+        height: auto;
         display: flex;
         flex-direction: column;
         text-align: center;
-        justify-content: center;
+        background-image: url("../background/header-m.png");
     }
 }
 
@@ -52,7 +53,7 @@
         font-weight: 700;
         font-size: 32px;
         line-height: 46px;
-        margin-top: 40px;
+        margin-top: 130px;
     }
 }
 
@@ -70,14 +71,11 @@
         font-size: 18px;
         line-height: 26px;
         margin-bottom: 20px;
+        margin-top: 20px;
     }
 }
 
-.header__btn {
-    grid-area: btn;
-}
-
-.header__btn button {
+.goto-apply-button {
     border: white;
     border-radius: 8px;
     width: 245px;
@@ -90,8 +88,30 @@
 }
 
 @media (max-width: 800px) {
-    .header__btn button {
-        margin-top: 20px;
+    .goto-apply-button {
+        margin-top: 232px;
+        margin-bottom: 50px;
+        height: 50px;
         width: 330px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 29px;
+    }
+}
+
+.goto-apply-button.floating {
+    margin: 0px !important;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    border-radius: 0px;
+    z-index: 1;
+    transition: 0.5s all;
+    display: none;
+}
+
+@media (max-width:800px) {
+    .goto-apply-button.floating {
+        display: block;
     }
 }

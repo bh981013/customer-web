@@ -1,17 +1,64 @@
 .apply {
-    padding-top: 80px;
+    padding-top: 100px;
     padding-bottom: 80px;
-    --dropdown-position: 80px;
+    --dropdown-position: 45px;
     --dropdown-menu-height: 62px;
+    --dropdown-input-padding-left: 24px;
+    --dropdown-input-padding-left-m: 16px;
+    --triangele-width: 10px;
+    --rectangle-name-width: 116px;
+    --rectangle-phone-width: 190px;
+    position: relative;
+}
+
+@media(max-width: 800px) {
+    .apply {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+.apply::after {
+    position: absolute;
+    background-image: url("../background/apply.png");
+    opacity: 0.5!important;
+    z-index: -1;
+    width: 80%;
+    height: 100%;
+    left: 20%;
+    content: "";
+    top: 50px;
+}
+
+@media (max-width: 800px) {
+    .apply::after {
+        position: absolute;
+        background-image: url("../background/apply.jpeg");
+        opacity: 0.3!important;
+        z-index: -1;
+        width: 100%;
+        content: "";
+        top: 50px;
+        object-fit: scale-down;
+    }
 }
 
 .apply .main {
     font-weight: 700;
     font-size: 48px;
     line-height: 48px;
-    margin: 60px;
+    margin: 60px 0px 60px 0px;
     word-break: keep-all;
     text-align: center;
+}
+
+@media (max-width:800px) {
+    .apply .main {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 35px;
+        margin-bottom: 50px
+    }
 }
 
 .apply .apply-box {
@@ -28,7 +75,13 @@
 
 @media (max-width: 800px) {
     .apply .apply-box {
-        width: 95%;
+        width: 90%;
+    }
+}
+
+@media (max-width: 700px) {
+    .apply .apply-box {
+        grid-template-columns: 70fr 868fr 70fr;
     }
 }
 
@@ -37,19 +90,19 @@
 }
 
 .apply .apply-part {
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    margin-top: 50px;
+    padding-bottom: 32px;
     position: relative;
 }
 
-.apply .apply-part .sub-title {
+.apply .sub-title {
     text-align: left;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
 }
 
-.apply .apply-part:hover {
-    cursor: pointer;
-}
+.apply .apply-part:hover {}
 
 .apply .apply-part .select-part {
     width: 100%;
@@ -57,14 +110,16 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 30px;
-    color: #9D9D9D;
+    color: #414141;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border: 1px solid #ECEEF5;
     box-sizing: border-box;
     border-radius: 5px;
-    padding-left: 15px;
+    padding-left: var(--dropdown-input-padding-left);
+    margin-top: 16px;
+    cursor: pointer;
 }
 
 @media (max-width: 800px) {
@@ -72,15 +127,16 @@
 }
 
 .apply .apply-part .spec-part {
-    width: calc(100% - 17px);
+    width: calc(100% - var(--dropdown-input-padding-left) - 2px);
     height: var(--dropdown-menu-height);
     font-weight: 400;
     font-size: 18px;
     line-height: 62px;
-    color: #9D9D9D;
+    color: black;
     border: 1px solid #ECEEF5;
-    padding-left: 15px;
+    padding-left: 24px;
     text-align: left;
+    transition: 0.3s opacity;
 }
 
 .apply .apply-part .select-part__HC {
@@ -121,78 +177,141 @@
     margin: 5px;
 }
 
-.apply .name {
-    margin-top: 10px;
+.apply .name-phone-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.apply .name,
+.apply .phone {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
     display: inline-block;
     box-sizing: border-box;
-    width: 50%;
+    width: 47%;
+    position: relative;
 }
+
+.apply {}
 
 .apply .phone {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 49%;
+    text-align: right;
 }
 
-@media (max-width: 800px) {
-    .apply .apply-us>.phone {}
-}
+@media (max-width: 800px) {}
 
 .apply .name input,
 .apply .phone input {
-    width: 228px;
+    margin-top: 16px;
+    width: 100%;
     height: var(--dropdown-menu-height);
     font-weight: 400;
     font-size: 18px;
     line-height: 30px;
     border: 1px solid #ECEEF5;
     box-sizing: border-box;
-    padding-left: 13px;
+    padding-left: calc(var(--dropdown-input-padding-left) - 2px);
     border-radius: 5px;
+    color: #414141;
 }
 
-.apply .phone {
-    padding-left: 15px;
+.apply .name input::placeholder,
+.apply .phone input::placeholder {
+    color: #9D9D9D;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
     .apply .name input,
-    .apply .phone input {}
+    .apply .phone input {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 23px;
+        padding-left: var(--dropdown-input-padding-left-m)
+    }
 }
 
-.apply input::placeholder {
-    padding-left: 5px;
+.apply .name-error,
+.apply .phone-error {
+    transition: 0.3s all;
 }
 
-.apply .agree {
-    margin-top: 50px;
+.apply .triangle,
+.apply .rectangle {
+    position: absolute;
+    font-size: 12px;
+    line-height: 33px;
+    letter-spacing: -0.05em;
+    font-weight: 300;
+}
+
+.apply .triangle {
+    width: 0px;
+    height: 0px;
+    border-bottom: var(--triangele-width) solid #414141;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    letter-spacing: 0.05em;
+    right: calc(50% - var(--triangele-width));
+}
+
+.apply .rectangle {
+    height: 33px;
+    background: #414141;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    bottom: -42px;
+}
+
+.apply .name-error .triangle {}
+
+.apply .name-error .rectangle {
+    width: var(--rectangle-name-width);
+    right: calc(50% - (var(--rectangle-name-width)/2));
+}
+
+.apply .phone-error .rectangle {
+    width: var(--rectangle-phone-width);
+    right: calc(50% - (var(--rectangle-phone-width)/2));
+}
+
+.apply .mini-text {
+    text-align: center;
+    margin-top: 30px;
     font-weight: 400;
     font-size: 16px;
-    height: 24px;
-    text-align: center;
+    line-height: 22px;
+    color: #9D9D9D;
+    font-family: 'Noto Sans KR';
 }
 
-.apply .agree [type="checkbox"] {
-    padding-top: 4px;
-    width: 20px;
-    height: 20px;
-    position: relative;
-    top: 5px;
-    cursor: pointer;
-}
-
-.apply .agree .text {
-    display: inline-block;
-    cursor: pointer;
+@media(max-width: 800px) {
+    .apply .mini-text {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 17px;
+    }
 }
 
 .apply .submit {
     display: block;
     margin: auto;
-    margin-top: 50px;
-    width: 450px;
-    height: 60px;
+    margin-top: 34px;
+    margin-bottom: 50px;
+    width: 487px;
+    height: 65px;
     color: white;
     background: var(--theme-color);
     border-radius: 8px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 35px;
+}
+
+@media (max-width:800px) {
+    .apply .submit {
+        width: 100%;
+    }
 }

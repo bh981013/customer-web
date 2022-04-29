@@ -3,6 +3,7 @@
     background-color: var(--font-color);
     position: relative;
     color: white;
+    z-index: 2;
 }
 
 
