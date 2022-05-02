@@ -1,6 +1,5 @@
 NUM_OF_BUTTONS = 3;
-NUM_OF_QUESTIONS = 3;
-
+NUM_OF_QUESTIONS = 7;
 //아이템이 자연스럽게 등장하는 애니메이션을 주는 함수
 function appearSoft(node) {
     node.style.display = "block";
@@ -12,38 +11,6 @@ function disappearSoft(node, disappearTime) {
     node.style.opacity = 0;
     setTimeout(() => node.style.display = "none", disappearTime);
 }
-
-//part 클릭시 설명 보이는 이벤트 추가
-function navOnClick(num) {
-    let descriptNodes = document.querySelectorAll('.part__description>*');
-    let buttons = document.querySelectorAll('.part__navigation>*');
-    descriptNodes[num].style = "display:grid";
-    descriptNodes[num].style.opacity = 0;
-    console.log(descriptNodes[num]);
-    setTimeout(() => {
-        descriptNodes[num].style.opacity = 1;
-    }, 20);
-    console.log(descriptNodes[num]);
-    buttons[num].style = "border-bottom: 2px solid var(--theme-color); font-weight: 500;";
-
-    for (let i = 0; i < NUM_OF_BUTTONS; i++) {
-        if (i != num) {
-            descriptNodes[i].style.display = "none";
-            buttons[i].style.borderBottom = "0px";
-            buttons[i].style.fontWeight = "400";
-            console.log(descriptNodes[i]);
-        }
-    }
-}
-
-
-document.querySelectorAll('.part__navigation>*').forEach((button, i) => {
-    button.addEventListener("click", () => {
-        navOnClick(i);
-    })
-})
-
-
 //지원 분야 선택 드롭다운 구현
 function showPartDropdown() {
     document.querySelectorAll(".spec-part").forEach(elem => {
@@ -80,30 +47,78 @@ document.querySelectorAll(".spec-part").forEach((elem, i) => elem.addEventListen
     hidePartDropdown();
 }))
 
+
+
+
 //자주 묻는 질문 펼치기 구현
-let questions = document.querySelectorAll('.frequent .question')
+let qnaBox = document.querySelectorAll('.frequent .QnA-box');
+let questions = document.querySelectorAll('.frequent .question');
 let questionDropButtons = document.querySelectorAll(`.frequent .down-icon`);
 let questionUpButtons = document.querySelectorAll(`.frequent .up-icon`);
 let answers = document.querySelectorAll('.frequent .answer');
 
+function openQuestion(i) {
+    answers[i].style = "display: block";
+    answers[i].style.opacity = 0;
+    setTimeout(() => {
+        answers[i].style.opacity = 1
+    })
+    questionUpButtons[i].style = "display: block";
+    questionDropButtons[i].style = "display: none";
+    document.querySelectorAll(".QnA-box")[i].style = "background-color: #F8F9FA";
+    questions[i].setAttribute("state", "open");
+}
+
+function closeQuestion(i) {
+    if (i == -1) return;
+    answers[i].style = "display: none";
+    questionDropButtons[i].style = "display: block";
+    questionUpButtons[i].style = "display: none";
+    questions[i].setAttribute("state", "closed");
+    document.querySelectorAll(".QnA-box")[i].style = "background-color: white";
+}
+
+let beforeSelected = -1
 questions.forEach((q, i) => q.addEventListener("click", function() {
     if (this.getAttribute("state") == "closed") {
-        answers[i].style = "display: block";
-        answers[i].style.opacity = 0;
-        setTimeout(() => answers[i].style.opacity = 1)
-        questionUpButtons[i].style = "display: block";
-        questionDropButtons[i].style = "display: none";
-        document.querySelectorAll(".QnA-box")[i].style = "background-color: #F8F9FA";
-        this.setAttribute("state", "open");
+        openQuestion(i);
+        for (let j = 0; j < NUM_OF_QUESTIONS; j++)
+            if (j != i)
+                closeQuestion(j);
+
     } else {
-        answers[i].style = "display: none";
-        questionDropButtons[i].style = "display: block";
-        questionUpButtons[i].style = "display: none";
-        this.setAttribute("state", "closed");
-        document.querySelectorAll(".QnA-box")[i].style = "background-color: white";
+        closeQuestion(i);
     }
 
 }))
+
+//part 클릭시 설명 보이는 이벤트 추가
+function navOnClick(num) {
+    let descriptNodes = document.querySelectorAll('.part__description>*');
+    let buttons = document.querySelectorAll('.part__navigation>*');
+    descriptNodes[num].style = "display:grid";
+    descriptNodes[num].style.opacity = 0;
+    setTimeout(() => {
+        descriptNodes[num].style.opacity = 1;
+    });
+    questions.forEach((e, i) => closeQuestion(i));
+    buttons[num].style = "border-bottom: 2px solid var(--theme-color); font-weight: 500;";
+
+    for (let i = 0; i < NUM_OF_BUTTONS; i++) {
+        if (i != num) {
+            descriptNodes[i].style.display = "none";
+            buttons[i].style.borderBottom = "0px";
+            buttons[i].style.fontWeight = "400";
+        }
+    }
+}
+
+
+document.querySelectorAll('.part__navigation>*').forEach((button, i) => {
+    button.addEventListener("click", () => {
+        navOnClick(i);
+    })
+})
 
 //더블터치로 확대되는것 막기
 var lastTouchEnd = 0;
@@ -119,15 +134,10 @@ document.documentElement.addEventListener('touchend', function(event) {
 let xmlHttp = new XMLHttpRequest();
 xmlHttp.onreadystatechange = function() {
     if (this.status == 200 && this.readyState == this.DONE) {
-        console.log(this.status);
-        console.log(xmlHttp.responseText);
-        console.log(document.querySelector(".apply .select-part span").innerHTML);
         if (document.querySelector(".apply .select-part span").innerHTML == "가사청소") {
-            console.log("HC");
             document.querySelectorAll(".apply .pop-up .HC").forEach(e => e.style.display = "block");
             document.querySelectorAll(".apply .pop-up .other").forEach(e => e.style.display = "none");
         } else {
-            console.log("other");
             document.querySelectorAll(".apply .pop-up .HC").forEach(e => e.style.display = "none");
             document.querySelectorAll(".apply .pop-up .other").forEach(e => e.style.display = "block");
         }
@@ -197,4 +207,5 @@ document.querySelectorAll(".apply .pop-up .out").forEach(out => out.addEventList
     disappearSoft(document.querySelector(".apply .pop-up-background"), 0.5);
     disappearSoft(document.querySelector(".apply .pop-up.pc"), 0.5);
     disappearSoft(document.querySelector(".apply .pop-up.mobile"), 0.5);
+    document.querySelectorAll(".apply .sub input").forEach(e => e.value = null);
 }))
