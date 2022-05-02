@@ -25,8 +25,8 @@
     z-index: -1;
     width: 80%;
     height: 100%;
-    left: 20%;
     content: "";
+    left: 20%;
     top: 50px;
 }
 
@@ -34,12 +34,12 @@
     .apply::after {
         position: absolute;
         background-image: url("../background/apply.jpeg");
+        left: 0%;
         opacity: 0.3!important;
         z-index: -1;
         width: 100%;
         content: "";
-        top: 50px;
-        object-fit: scale-down;
+        object-fit: contain;
     }
 }
 
@@ -123,7 +123,9 @@
 }
 
 @media (max-width: 800px) {
-    .apply .apply-part .select-part {}
+    .apply .apply-part .select-part {
+        padding-left: var(--dropdown-input-padding-left-m);
+    }
 }
 
 .apply .apply-part .spec-part {
@@ -314,4 +316,108 @@
     .apply .submit {
         width: 100%;
     }
+}
+
+.apply .pop-up {
+    width: 486px;
+    height: 366px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 4;
+    transition: 0.5s all;
+}
+
+@media (max-width:800px) {
+    .apply .pop-up.mobile {
+        width: 330px;
+        height: 240px;
+    }
+}
+
+.apply .pop-up .x-div {
+    text-align: right;
+}
+
+.apply .pop-up .x-div .out {
+    width: 26px;
+    height: 26px;
+    margin: 48px 48px 0px auto;
+    cursor: pointer;
+}
+
+.apply .pop-up .main {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 46px;
+}
+
+.apply .pop-up.pc .main {
+    margin: 18px auto 50px auto;
+}
+
+@media (max-width:800px) {
+    .apply .pop-up .main {
+        margin: 48px auto 30px auto;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 29px;
+    }
+}
+
+.apply .pop-up .sub {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;
+}
+
+@media (max-width:800px) {
+    .apply .pop-up .sub {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 23px;
+    }
+}
+
+.apply .pop-up .btn-div {
+    display: block;
+    text-align: right;
+    margin-top: 32px;
+    margin-right: 32px;
+}
+
+.apply .pop-up .btn-div .out {
+    cursor: pointer;
+    background-color: #FFFFFF;
+    width: 80px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;
+}
+
+@media (max-width:800px) {
+    .apply .pop-up .btn-div .out {
+        width: 45px;
+        height: 30px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 23px;
+    }
+}
+
+.apply .pop-up-background {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51, 51, 51, 0.6);
+    z-index: 3;
+    transition: 0.5s all;
 }

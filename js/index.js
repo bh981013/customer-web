@@ -1,4 +1,4 @@
-NUM_OF_BUTTONS = 4;
+NUM_OF_BUTTONS = 3;
 NUM_OF_QUESTIONS = 3;
 
 //아이템이 자연스럽게 등장하는 애니메이션을 주는 함수
@@ -121,18 +121,48 @@ xmlHttp.onreadystatechange = function() {
     if (this.status == 200 && this.readyState == this.DONE) {
         console.log(this.status);
         console.log(xmlHttp.responseText);
+        console.log(document.querySelector(".apply .select-part span").innerHTML);
+        if (document.querySelector(".apply .select-part span").innerHTML == "가사청소") {
+            console.log("HC");
+            document.querySelectorAll(".apply .pop-up .HC").forEach(e => e.style.display = "block");
+            document.querySelectorAll(".apply .pop-up .other").forEach(e => e.style.display = "none");
+        } else {
+            console.log("other");
+            document.querySelectorAll(".apply .pop-up .HC").forEach(e => e.style.display = "none");
+            document.querySelectorAll(".apply .pop-up .other").forEach(e => e.style.display = "block");
+        }
+        if (window.innerWidth <= 800) {
+            appearSoft(document.querySelector(".apply .pop-up-background"))
+            appearSoft(document.querySelector(".apply .pop-up.mobile"));
+        } else {
+            appearSoft(document.querySelector(".apply .pop-up-background"))
+            appearSoft(document.querySelector(".apply .pop-up.pc"));
+        }
     }
 }
+
+//지원하기 클릭시 실행함수
+let nameErrorTimeout = null;
+let phoneErrorTimeout = null;
 document.querySelector(".apply .submit").addEventListener("click", () => {
+    //appearSoft(document.querySelector(".apply .pop-up-background"))
+    //appearSoft(document.querySelector(".apply .pop-up.pc"));
+
     let part = document.querySelector(".apply .select-part span");
     let [name, phone] = document.querySelectorAll(".apply .sub input");
     if (!name.value) {
+        if (nameErrorTimeout) {
+            clearTimeout(nameErrorTimeout);
+        }
         appearSoft(document.querySelector(".apply .name-error"));
-        setTimeout(() => disappearSoft(document.querySelector(".apply .name-error"), 300), 3000)
+        nameErrorTimeout = setTimeout(() => {
+            disappearSoft(document.querySelector(".apply .name-error"), 300);
+        }, 3000)
     }
     if (!phone.value || !phone.value.match(/.[(0-9)]{9,10}/)) {
+        if (phoneErrorTimeout) clearTimeout(phoneErrorTimeout);
         appearSoft(document.querySelector(".apply .phone-error"));
-        setTimeout(() => disappearSoft(document.querySelector(".apply .phone-error"), 300), 3000)
+        phoneErrorTimeout = setTimeout(() => disappearSoft(document.querySelector(".apply .phone-error"), 300), 3000)
     } else {
         xmlHttp.open("POST", "https://lapi.dangjib.com/provider/inbound");
         xmlHttp.setRequestHeader('Content-type', 'application/json')
@@ -143,22 +173,28 @@ document.querySelector(".apply .submit").addEventListener("click", () => {
         }
         console.log(part.innerHTML, name.value, phone.value);
         xmlHttp.send(JSON.stringify(data));
+
     }
 })
 
-//자원하기 모바일버전 플로팅버튼 구현
-let beforeScrollY = 0;
+//지원하기 모바일버전 플로팅버튼 구현
 const TOP = 240;
 const BOTTOM = 4000;
 window.addEventListener('scroll', () => {
     //스크롤을 할 때마다 로그로 현재 스크롤의 위치가 찍혀나온다.
     let floatingBtn = document.querySelector(".goto-apply-button.floating");
     if (window.innerWidth <= 800) {
-        if ((beforeScrollY < TOP && window.scrollY >= TOP) || (beforeScrollY > BOTTOM && window.scrollY <= BOTTOM)) {
+        if (window.scrollY >= TOP && window.scrollY <= BOTTOM) {
             floatingBtn.style.display = "block";
-        } else if ((beforeScrollY >= TOP && window.scrollY < TOP) || (beforeScrollY < BOTTOM && window.scrollY >= BOTTOM)) {
+        } else if (window.scrollY < TOP || window.scrollY >= BOTTOM) {
             floatingBtn.style.display = "none";
         }
     }
-    beforeScrollY = window.scrollY;
 })
+
+//지원 완료 후 확인 메세지 닫기
+document.querySelectorAll(".apply .pop-up .out").forEach(out => out.addEventListener("click", () => {
+    disappearSoft(document.querySelector(".apply .pop-up-background"), 0.5);
+    disappearSoft(document.querySelector(".apply .pop-up.pc"), 0.5);
+    disappearSoft(document.querySelector(".apply .pop-up.mobile"), 0.5);
+}))
