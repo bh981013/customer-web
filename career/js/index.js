@@ -175,7 +175,8 @@ document.querySelector(".apply .submit").addEventListener("click", () => {
         appearSoft(document.querySelector(".apply .phone-error"));
         phoneErrorTimeout = setTimeout(() => disappearSoft(document.querySelector(".apply .phone-error"), 300), 3000)
         if (name.value) phone.focus();
-    } else {
+    }
+    if (name.value && phone.value && phone.value.match(/.[(0-9)]{9,10}/)) {
         xmlHttp.open("POST", "https://lapi.dangjib.com/provider/inbound");
         xmlHttp.setRequestHeader('Content-type', 'application/json')
         let data = {

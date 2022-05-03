@@ -265,6 +265,7 @@
 }
 
 .apply .rectangle {
+    font-family: 'NotoSans-Regular';
     height: 33px;
     background: #414141;
     border-radius: 8px;
@@ -359,7 +360,7 @@
 }
 
 .apply .pop-up .main {
-    font-weight: 700;
+    font-family: 'NotoSans-Bold';
     font-size: 32px;
     line-height: 46px;
 }
@@ -378,7 +379,7 @@
 }
 
 .apply .pop-up .sub {
-    font-weight: 400;
+    font-family: 'NotoSans-Regular';
     font-size: 24px;
     line-height: 35px;
 }
@@ -410,7 +411,7 @@
 
 @media (max-width:800px) {
     .apply .pop-up .btn-div .out {
-        width: 45px;
+        width: 60px;
         height: 30px;
         font-weight: 700;
         font-size: 16px;
