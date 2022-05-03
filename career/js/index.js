@@ -102,13 +102,13 @@ function navOnClick(num) {
         descriptNodes[num].style.opacity = 1;
     });
     questions.forEach((e, i) => closeQuestion(i));
-    buttons[num].style = "border-bottom: 2px solid #E4BB7D; font-weight: 500;";
+    buttons[num].style = "border-bottom: 2px solid #E4BB7D; font-family: NotoSans-Medium;";
 
     for (let i = 0; i < NUM_OF_BUTTONS; i++) {
         if (i != num) {
             descriptNodes[i].style.display = "none";
             buttons[i].style.borderBottom = "0px";
-            buttons[i].style.fontWeight = "400";
+            buttons[i].style.fontFamily = 'NotoSans-Regular';
         }
     }
 }
@@ -205,8 +205,6 @@ window.addEventListener('scroll', () => {
             floatingBtn.style = "opacity: 0";
             floatingBtn.style.cursor = "default";
             document.querySelector(".floating-a").href = "javascript:void(0);";
-
-
         }
     }
 })
