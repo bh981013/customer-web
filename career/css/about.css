@@ -26,8 +26,8 @@
 }
 
 .why__title {
+    font-family: 'NotoSans-Bold';
     grid-area: title;
-    font-weight: 700;
     font-size: 40px;
     line-height: 58px;
     padding-top: 150px;
@@ -108,8 +108,8 @@
 }
 
 .why .main {
+    font-family: 'NotoSans-Bold';
     font-style: normal;
-    font-weight: 700;
     font-size: 24px;
     line-height: 30px;
     /* identical to box height, or 125% */
@@ -127,6 +127,7 @@
 }
 
 .why .sub {
+    font-family: 'NotoSans-Regular';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -186,7 +187,7 @@
 @media (max-width: 800px) {
     .step .box {
         display: grid;
-        grid-template-columns: 135fr 185fr;
+        grid-template-columns: 134fr 216fr;
         grid-template-rows: repeat(2, auto);
         grid-template-areas: "img semi-title" "img text-box";
         height: 220px;
@@ -194,7 +195,7 @@
         box-shadow: none;
         margin-bottom: 10px;
         width: 100%;
-        padding: 32px 0px;
+        padding: 32px 16px;
         box-sizing: border-box;
     }
 }
@@ -212,7 +213,7 @@
 }
 
 .step .semi-title {
-    font-weight: 700;
+    font-family: 'NotoSans-Bold';
     font-size: 32px;
     line-height: 46px;
     letter-spacing: -0.02em;
@@ -230,7 +231,7 @@
         font-size: 20px;
         line-height: 29px;
         text-align: left;
-        padding-left: 0px;
+        padding-left: 15px;
     }
 }
 
@@ -257,26 +258,27 @@
 }
 
 .step .text-box {
+    font-family: 'NotoSans-Regular';
     text-align: center;
-    font-weight: 400;
     font-size: 24px;
     line-height: 35px;
     width: auto;
     margin-top: 20px;
+    letter-spacing: -0.05em;
 }
 
 @media (max-width: 800px) {
     .step .text-box {
         grid-area: text-box;
         margin-top: 0px;
-        padding-left: 0px;
+        padding-left: 15px;
         padding-right: 3px;
         height: auto;
     }
 }
 
 .step .text-box .p {
-    margin: 10px auto;
+    height: 55px;
     font-weight: 400;
     font-size: 16px;
     line-height: 23px;
@@ -284,12 +286,13 @@
 
 @media (max-width: 800px) {
     .step .text-box .p {
+        height: 33px;
         margin: 5px auto;
     }
 }
 
 .step .text-box .p.last {
-    margin-bottom: 0px;
+    height: auto;
 }
 
 .step .text-box .mini {
@@ -318,9 +321,9 @@
 }
 
 .part__title {
+    font-family: 'NotoSans-Bold';
     margin: 150px auto 86px auto;
     text-align: center;
-    font-weight: 700;
     font-size: 40px;
     line-height: 58px;
 }
@@ -351,7 +354,7 @@
 }
 
 .part__navigation>button {
-    width: 256px;
+    width: 13vw;
     height: var(--nav-button-height);
     background-color: white;
     color: black;
@@ -365,7 +368,7 @@
 
 @media (max-width: 1300px) {
     .part__navigation>button {
-        width: 19vw;
+        font-size: 28px;
     }
 }
 
@@ -380,7 +383,7 @@
 }
 
 .part__navigation>.button1 {
-    border-bottom: 2px solid var(--theme-color);
+    border-bottom: 2px solid #E4BB7D;
     font-weight: 500;
 }
 
@@ -409,20 +412,18 @@
     opacity: 0;
 }
 
-.part_description--DB {
-    display: none;
-    opacity: 0;
-}
-
 .frequent .QnA-box {
     border: 1px solid #ECEEF5;
     margin: 20px 0px 20px 0px;
+    border-radius: 5px;
     transition: 1s background-color;
+    padding: 32px 0px 32px 32px;
 }
 
 @media (max-width: 800px) {
     .frequent .QnA-box {
         width: 330px;
+        padding: 16px 0px 16px 16px;
         margin: 8px 0px 8px 0px;
     }
 }
@@ -430,7 +431,6 @@
 .frequent .question,
 .frequent .answer {
     text-align: left;
-    padding-left: 30px;
 }
 
 @media (max-width:800px) {
@@ -440,19 +440,13 @@
     }
 }
 
-.frequent .question,
-.frequent .answer {
-    text-align: left;
-    padding-left: 30px;
-}
-
 .frequent .question {
-    font-weight: 700;
+    font-family: 'NotoSans-Medium';
     font-size: 24px;
     line-height: 30px;
     letter-spacing: -0.02em;
     display: grid;
-    grid-template-columns: 300px 1fr 50px;
+    grid-template-columns: 1fr 50px;
     grid-template-areas: "title . icon";
 }
 
@@ -467,7 +461,8 @@
 }
 
 .frequent .answer {
-    font-weight: 400;
+    font-family: 'NotoSans-Regular';
+    margin-top: 40px;
     padding-right: 30px;
     font-size: 16px;
     line-height: 22px;
@@ -489,14 +484,15 @@
 .question>.up-icon {
     grid-area: icon;
     width: 32px;
-    padding-top: 20px;
+    margin: auto;
     margin-right: 20px;
 }
 
 @media (max-width:800px) {
     .question>.down-icon,
     .question>.up-icon {
-        padding-top: 15px;
+        margin: auto;
+        margin-right: 20px;
     }
 }
 

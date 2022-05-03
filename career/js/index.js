@@ -1,5 +1,5 @@
 NUM_OF_BUTTONS = 3;
-NUM_OF_QUESTIONS = 7;
+NUM_OF_QUESTIONS = 9;
 //아이템이 자연스럽게 등장하는 애니메이션을 주는 함수
 function appearSoft(node) {
     node.style.display = "block";
@@ -20,7 +20,7 @@ function showPartDropdown() {
     setTimeout(() => document.querySelectorAll(".spec-part").forEach(elem => elem.style.opacity = 1));
     document.querySelector(".select-part").setAttribute("state", "open");
     document.querySelector(".select-part").style = "border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;"
-    document.querySelector(".select-part img").src = "./Icons/chevron-up.png";
+    document.querySelector(".select-part img").src = "./Icons/chevron-up.svg";
 }
 
 function hidePartDropdown() {
@@ -30,7 +30,7 @@ function hidePartDropdown() {
     setTimeout(() => document.querySelectorAll(".spec-part").forEach(elem => elem.style.display = "none"), 300);
     document.querySelector(".select-part").setAttribute("state", "closed")
     document.querySelector(".select-part").style = "border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"
-    document.querySelector(".select-part img").src = "./Icons/chevron-down.png";
+    document.querySelector(".select-part img").src = "./Icons/chevron-down.svg";
 }
 document.querySelector(".select-part").addEventListener("click", function() {
     if (this.getAttribute("state") == "closed") {
@@ -102,7 +102,7 @@ function navOnClick(num) {
         descriptNodes[num].style.opacity = 1;
     });
     questions.forEach((e, i) => closeQuestion(i));
-    buttons[num].style = "border-bottom: 2px solid var(--theme-color); font-weight: 500;";
+    buttons[num].style = "border-bottom: 2px solid #E4BB7D; font-weight: 500;";
 
     for (let i = 0; i < NUM_OF_BUTTONS; i++) {
         if (i != num) {
@@ -168,11 +168,13 @@ document.querySelector(".apply .submit").addEventListener("click", () => {
         nameErrorTimeout = setTimeout(() => {
             disappearSoft(document.querySelector(".apply .name-error"), 300);
         }, 3000)
+        name.focus();
     }
     if (!phone.value || !phone.value.match(/.[(0-9)]{9,10}/)) {
         if (phoneErrorTimeout) clearTimeout(phoneErrorTimeout);
         appearSoft(document.querySelector(".apply .phone-error"));
         phoneErrorTimeout = setTimeout(() => disappearSoft(document.querySelector(".apply .phone-error"), 300), 3000)
+        if (name.value) phone.focus();
     } else {
         xmlHttp.open("POST", "https://lapi.dangjib.com/provider/inbound");
         xmlHttp.setRequestHeader('Content-type', 'application/json')
@@ -189,15 +191,21 @@ document.querySelector(".apply .submit").addEventListener("click", () => {
 
 //지원하기 모바일버전 플로팅버튼 구현
 const TOP = 240;
-const BOTTOM = 4000;
+const BOTTOM = 3500;
 window.addEventListener('scroll', () => {
     //스크롤을 할 때마다 로그로 현재 스크롤의 위치가 찍혀나온다.
     let floatingBtn = document.querySelector(".goto-apply-button.floating");
     if (window.innerWidth <= 800) {
-        if (window.scrollY >= TOP && window.scrollY <= BOTTOM) {
-            floatingBtn.style.display = "block";
+        if (TOP <= window.scrollY && window.scrollY <= BOTTOM) {
+            floatingBtn.style = "opacity: 1";
+            floatingBtn.style.cursor = "pointer";
+            document.querySelector(".floating-a").href = "#apply";
         } else if (window.scrollY < TOP || window.scrollY >= BOTTOM) {
-            floatingBtn.style.display = "none";
+            floatingBtn.style = "opacity: 0";
+            floatingBtn.style.cursor = "default";
+            document.querySelector(".floating-a").href = "javascript:void(0);";
+
+
         }
     }
 })

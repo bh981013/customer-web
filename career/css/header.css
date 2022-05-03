@@ -42,9 +42,11 @@
 }
 
 .header .header__content .main {
-    font-weight: 700;
+    font-family: 'NotoSans-Bold';
+    font-style: normal;
     font-size: 60px;
     line-height: 87px;
+    letter-spacing: -0.05em;
     color: var(--font-color);
 }
 
@@ -58,6 +60,7 @@
 }
 
 .header .header__content .sub {
+    font-family: 'NotoSans-Regular';
     font-weight: 400;
     font-size: 24px;
     line-height: 35px;
@@ -76,13 +79,13 @@
 }
 
 .goto-apply-button {
+    font-family: 'NotoSans-Medium';
     border: white;
     border-radius: 8px;
     width: 245px;
     height: 65px;
     color: white;
     background-color: var(--theme-color);
-    font-weight: 500;
     font-size: 24px;
     line-height: 35px;
 }

@@ -14,14 +14,40 @@
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     user-select: none;
-    font-family: 'Noto Sans KR';
+}
+
+@font-face {
+    font-family: 'NotoSans-Regular';
+    src: url('https://s3.ap-northeast-2.amazonaws.com/dev.app.dangjib.com/asset/common/font/NotoSans-Regular.otf');
+}
+
+@font-face {
+    font-family: 'NotoSans-DemiLight';
+    src: url('https://s3.ap-northeast-2.amazonaws.com/dev.app.dangjib.com/asset/common/font/NotoSans-DemiLight.otf');
+}
+
+@font-face {
+    font-family: 'NotoSans-Light';
+    src: url('https://s3.ap-northeast-2.amazonaws.com/dev.app.dangjib.com/asset/common/font/NotoSans-Light.otf');
+}
+
+@font-face {
+    font-family: 'NotoSans-Medium';
+    src: url('https://s3.ap-northeast-2.amazonaws.com/dev.app.dangjib.com/asset/common/font/NotoSans-Medium.otf');
+}
+
+@font-face {
+    font-family: 'NotoSans-Bold';
+    src: url('https://s3.ap-northeast-2.amazonaws.com/dev.app.dangjib.com/asset/common/font/NotoSans-Bold.otf');
 }
 
 body {
     margin: 0px;
     padding: 0px;
-    color: var(--font-color);
-    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body * {
+    letter-spacing: -0.05em;
 }
 
 button {
@@ -30,4 +56,16 @@ button {
 
 button:hover {
     cursor: pointer;
+}
+
+a:link {
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+
+p {
+    margin: 0px;
 }

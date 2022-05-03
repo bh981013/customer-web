@@ -23,17 +23,18 @@
     background-image: url("../background/apply.png");
     opacity: 0.5!important;
     z-index: -1;
-    width: 80%;
+    width: 65%;
     height: 100%;
     content: "";
-    left: 20%;
+    right: 0px;
     top: 50px;
+    object-fit: cover;
 }
 
 @media (max-width: 800px) {
     .apply::after {
         position: absolute;
-        background-image: url("../background/apply.jpeg");
+        background-image: url("../background/apply-cut.jpeg");
         left: 0%;
         opacity: 0.3!important;
         z-index: -1;
@@ -44,7 +45,7 @@
 }
 
 .apply .main {
-    font-weight: 700;
+    font-family: 'NotoSans-Bold';
     font-size: 48px;
     line-height: 48px;
     margin: 60px 0px 60px 0px;
@@ -96,8 +97,8 @@
 }
 
 .apply .sub-title {
+    font-family: 'NotoSans-Medium';
     text-align: left;
-    font-weight: 500;
     font-size: 20px;
     line-height: 30px;
 }
@@ -105,9 +106,9 @@
 .apply .apply-part:hover {}
 
 .apply .apply-part .select-part {
+    font-family: 'NotoSans-Regular';
     width: 100%;
     height: var(--dropdown-menu-height);
-    font-weight: 400;
     font-size: 18px;
     line-height: 30px;
     color: #414141;
@@ -129,12 +130,14 @@
 }
 
 .apply .apply-part .spec-part {
+    font-family: 'NotoSans-Regular';
+    font-weight: 400;
     width: calc(100% - var(--dropdown-input-padding-left) - 2px);
     height: var(--dropdown-menu-height);
     font-weight: 400;
     font-size: 18px;
     line-height: 62px;
-    color: black;
+    color: #414141;
     border: 1px solid #ECEEF5;
     padding-left: 24px;
     text-align: left;
@@ -211,12 +214,19 @@
     border: 1px solid #ECEEF5;
     box-sizing: border-box;
     padding-left: calc(var(--dropdown-input-padding-left) - 2px);
+    padding-right: calc(var(--dropdown-input-padding-left) - 2px);
     border-radius: 5px;
     color: #414141;
 }
 
+.apply .name input:focus,
+.apply .phone input:focus {
+    outline-color: var(--theme-color);
+}
+
 .apply .name input::placeholder,
 .apply .phone input::placeholder {
+    font-family: 'NotoSans-Regular';
     color: #9D9D9D;
 }
 
@@ -276,13 +286,13 @@
 }
 
 .apply .mini-text {
+    font-family: 'NotoSans-Regular';
     text-align: center;
     margin-top: 30px;
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
     color: #9D9D9D;
-    font-family: 'Noto Sans KR';
 }
 
 @media(max-width: 800px) {
@@ -294,6 +304,7 @@
 }
 
 .apply .submit {
+    font-family: 'NotoSans-Medium';
     display: block;
     margin: auto;
     margin-top: 34px;
@@ -303,7 +314,6 @@
     color: white;
     background: var(--theme-color);
     border-radius: 8px;
-    font-weight: 500;
     font-size: 24px;
     line-height: 35px;
 }
@@ -311,6 +321,7 @@
 @media (max-width:800px) {
     .apply .submit {
         width: 100%;
+        font-size: 20px;
     }
 }
 
