@@ -4,7 +4,10 @@ NUM_OF_QUESTIONS = 9;
 function appearSoft(node) {
     node.style.display = "block";
     node.style.opacity = 0;
-    setTimeout(() => node.style.opacity = 1);
+    setTimeout(() => {
+
+        node.style.opacity = 1;
+    });
 }
 
 function disappearSoft(node, disappearTime) {
@@ -13,21 +16,14 @@ function disappearSoft(node, disappearTime) {
 }
 //지원 분야 선택 드롭다운 구현
 function showPartDropdown() {
-    document.querySelectorAll(".spec-part").forEach(elem => {
-        elem.style.display = "block";
-        elem.style.opacity = 0;
-    })
-    setTimeout(() => document.querySelectorAll(".spec-part").forEach(elem => elem.style.opacity = 1));
+    document.querySelectorAll(".spec-part").forEach(e => appearSoft(e));
     document.querySelector(".select-part").setAttribute("state", "open");
     document.querySelector(".select-part").style = "border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;"
     document.querySelector(".select-part img").src = "./Icons/chevron-up.svg";
 }
 
 function hidePartDropdown() {
-    document.querySelectorAll(".spec-part").forEach(elem => {
-        elem.style.opacity = 0;
-    })
-    setTimeout(() => document.querySelectorAll(".spec-part").forEach(elem => elem.style.display = "none"), 300);
+    document.querySelectorAll(".spec-part").forEach(e => { disappearSoft(e, 300) });
     document.querySelector(".select-part").setAttribute("state", "closed")
     document.querySelector(".select-part").style = "border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"
     document.querySelector(".select-part img").src = "./Icons/chevron-down.svg";
@@ -50,36 +46,48 @@ document.querySelectorAll(".spec-part").forEach((elem, i) => elem.addEventListen
 
 
 
-//자주 묻는 질문 펼치기 구현
+//자주 묻는 질문: 질문 펼치기 구현
 let qnaBox = document.querySelectorAll('.frequent .QnA-box');
 let questions = document.querySelectorAll('.frequent .question');
-let questionDropButtons = document.querySelectorAll(`.frequent .down-icon`);
-let questionUpButtons = document.querySelectorAll(`.frequent .up-icon`);
 let answers = document.querySelectorAll('.frequent .answer');
 
+let questionDropButtons = document.querySelectorAll(`.frequent .down-icon`);
+let questionUpButtons = document.querySelectorAll(`.frequent .up-icon`);
+
+
+
+
 function openQuestion(i) {
-    answers[i].style = "display: block";
-    answers[i].style.opacity = 0;
+    let beforeHeight = 0,
+        afterHeight = 0;
+    beforeHeight = qnaBox[i].clientHeight;
+    appearSoft(answers[i]);
     setTimeout(() => {
-        answers[i].style.opacity = 1
+        qnaBox[i].style = `height: ${afterHeight}px`;
     })
+    afterHeight = qnaBox[i].clientHeight; //afterhight 의 값을 어느 위치에서 설정하느냐에 따라 answer의 애니메이션이 실행여부가 결정됨...왜그러지..?
     questionUpButtons[i].style = "display: block";
     questionDropButtons[i].style = "display: none";
-    document.querySelectorAll(".QnA-box")[i].style = "background-color: #F8F9FA";
-    questions[i].setAttribute("state", "open");
+    qnaBox[i].style = `background-color: #F8F9FA; height: ${beforeHeight + 1}px;`;
+    qnaBox[i].setAttribute("state", "open");
 }
 
 function closeQuestion(i) {
     if (i == -1) return;
+    let beforeHeight = 0,
+        afterHeight = 0;
+    beforeHeight = qnaBox[i].clientHeight;
     answers[i].style = "display: none";
     questionDropButtons[i].style = "display: block";
     questionUpButtons[i].style = "display: none";
-    questions[i].setAttribute("state", "closed");
-    document.querySelectorAll(".QnA-box")[i].style = "background-color: white";
+    qnaBox[i].setAttribute("state", "closed");
+    afterHeight = qnaBox[i].clientHeight;
+    qnaBox[i].style = `background-color: white;`;
+
 }
 
-let beforeSelected = -1
-questions.forEach((q, i) => q.addEventListener("click", function() {
+let beforeSelected = -1;
+qnaBox.forEach((q, i) => q.addEventListener("click", function() {
     if (this.getAttribute("state") == "closed") {
         openQuestion(i);
         for (let j = 0; j < NUM_OF_QUESTIONS; j++)
@@ -92,7 +100,7 @@ questions.forEach((q, i) => q.addEventListener("click", function() {
 
 }))
 
-//part 클릭시 설명 보이는 이벤트 추가
+//자주묻는 질문: 분야 클릭시 질문 보이는 이벤트 추가
 function navOnClick(num) {
     let descriptNodes = document.querySelectorAll('.part__description>*');
     let buttons = document.querySelectorAll('.part__navigation>*');
@@ -112,7 +120,6 @@ function navOnClick(num) {
         }
     }
 }
-
 
 document.querySelectorAll('.part__navigation>*').forEach((button, i) => {
     button.addEventListener("click", () => {
@@ -155,8 +162,11 @@ xmlHttp.onreadystatechange = function() {
 let nameErrorTimeout = null;
 let phoneErrorTimeout = null;
 document.querySelector(".apply .submit").addEventListener("click", () => {
-    //appearSoft(document.querySelector(".apply .pop-up-background"))
-    //appearSoft(document.querySelector(".apply .pop-up.pc"));
+    /*
+    //test코드
+    appearSoft(document.querySelector(".apply .pop-up-background"))    
+    appearSoft(document.querySelector(".apply .pop-up.pc"));
+    */
 
     let part = document.querySelector(".apply .select-part span");
     let [name, phone] = document.querySelectorAll(".apply .sub input");
