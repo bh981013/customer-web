@@ -232,11 +232,11 @@ document.querySelector(".apply .submit").addEventListener("click", () => {
         xmlHttp.open("POST", "https://lapi.dangjib.com/provider/inbound");
         xmlHttp.setRequestHeader('Content-type', 'application/json')
         let data = {
-                "category": part.innerHTML,
-                "name": name.value,
-                "phone": phone.value
-            }
-            //console.log(part.innerHTML, name.value, phone.value);
+            "category": part.innerHTML,
+            "name": name.value,
+            "phone": phone.value
+        }
+        console.log(part.innerHTML, name.value, phone.value);
         xmlHttp.send(JSON.stringify(data));
 
     }
