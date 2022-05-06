@@ -84,7 +84,7 @@ p {
     height: 700px;
     color: var(--font-color);
     background-color: white;
-    background-image: url("../background/header.png");
+    background-image: url("../img/main_crop_pc.png");
     background-size: cover;
     display: grid;
     grid-template-columns: 1fr 9fr;
@@ -97,7 +97,7 @@ p {
         display: flex;
         flex-direction: column;
         text-align: center;
-        background-image: url("../background/header-m.png");
+        background-image: url("../img/main_crop_mo.png");
     }
 }
 
@@ -210,6 +210,16 @@ p {
     height: 760px;
 }
 
+@media (max-width: 1340px) {
+    .why {
+        grid-template-columns: 1fr 2fr 2fr 1fr;
+        grid-template-rows: 300px auto auto;
+        grid-template-areas: "title title title title " ". d1 d2 ." " . d3 d4 .";
+        padding-bottom: 150px;
+        height: auto;
+    }
+}
+
 @media (max-width:800px) {
     .why {
         display: flex;
@@ -247,12 +257,14 @@ p {
     align-items: center;
 }
 
-@media(max-width: 1030px) {
+@media (max-width:1320px) {
     .why>.why__text--1,
     .why>.why__text--2,
     .why>.why__text--3,
     .why>.why__text--4 {
-        width: 180px;
+        padding-top: 50px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 
@@ -327,12 +339,17 @@ p {
     font-family: 'NotoSans-Regular';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 20px;
+    line-height: 29px;
     /* or 138% */
     text-align: center;
     letter-spacing: -0.02em;
     color: var(--font-color);
+}
+
+.why .sub.mini {
+    font-size: 16px;
+    color: #9D9D9D;
 }
 
 
@@ -468,12 +485,16 @@ p {
     font-family: 'NotoSans-Regular';
     text-align: center;
     width: auto;
-    margin-top: 20px;
     letter-spacing: -0.05em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 200px;
 }
 
 @media (max-width: 800px) {
     .step .text-box {
+        display: block;
         grid-area: text-box;
         margin-top: 0px;
         padding-left: 14px;
@@ -602,7 +623,7 @@ p {
 
 .part__description {
     display: grid;
-    grid-template-columns: 31fr 38fr 31fr;
+    grid-template-columns: auto 750px auto;
     grid-template-areas: ". content .";
 }
 
@@ -740,12 +761,13 @@ p {
     .apply {
         padding-top: 50px;
         padding-bottom: 50px;
+        background-size: cover;
     }
 }
 
 .apply::after {
     position: absolute;
-    background-image: url("../background/apply.png");
+    background-image: url("../img/img_apply_pc.png");
     opacity: 0.5!important;
     z-index: -1;
     width: 65%;
@@ -759,9 +781,9 @@ p {
 @media (max-width: 800px) {
     .apply::after {
         position: absolute;
-        background-image: url("../background/apply-cut.png");
+        background-image: url("../img/img_apply_mo.png");
+        opacity: 0.3;
         left: 0%;
-        opacity: 0.3!important;
         z-index: -1;
         width: 100%;
         content: "";
