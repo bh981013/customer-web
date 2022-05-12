@@ -43,6 +43,7 @@ body {
 
 body * {
     letter-spacing: -0.05em;
+    word-spacing: -0.05em;
     color: var(--font-color);
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -275,7 +276,6 @@ p {
     .why>.why__text--3,
     .why>.why__text--4 {
         margin-top: 63px;
-        width: 200px;
         padding-left: 0px;
         padding-right: 0px;
     }
@@ -413,14 +413,13 @@ p {
     .step .box {
         display: grid;
         grid-template-columns: 134fr 216fr;
-        grid-template-rows: repeat(2, auto);
-        grid-template-areas: "img semi-title" "img text-box";
+        grid-template-areas: "img text";
         height: 220px;
         border-radius: 0px;
         box-shadow: none;
         margin-bottom: 10px;
         width: 100%;
-        padding: 32px 16px;
+        padding: 16px 16px;
         box-sizing: border-box;
     }
 }
@@ -449,14 +448,20 @@ p {
     font-size: 0.75em;
 }
 
+.step .semi-title.mobile {
+    display: none;
+}
+
 @media (max-width: 800px) {
-    .step .semi-title {
-        grid-area: semi-title;
+    .step .semi-title.pc {
+        display: none;
+    }
+    .step .semi-title.mobile {
+        display: block;
         font-weight: 700;
         font-size: 20px;
         line-height: 29px;
         text-align: left;
-        padding-left: 14px;
     }
 }
 
@@ -486,7 +491,6 @@ p {
     font-family: 'NotoSans-Regular';
     text-align: center;
     width: auto;
-    letter-spacing: -0.05em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -495,9 +499,10 @@ p {
 
 @media (max-width: 800px) {
     .step .text-box {
-        display: block;
-        grid-area: text-box;
-        margin-top: 0px;
+        grid-area: text;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         padding-left: 14px;
         padding-right: 3px;
         height: auto;
@@ -515,7 +520,7 @@ p {
     .step .text-box .p {
         line-height: 23px;
         font-size: 16px;
-        height: 33px;
+        height: auto;
         margin: 5px auto;
     }
 }
@@ -535,6 +540,8 @@ p {
 
 @media (max-width: 800px) {
     .step .text-box>* {
+        display: inline-block;
+        width: 100%;
         text-align: left;
     }
     .step .text-box .mini {
