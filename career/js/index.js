@@ -1,7 +1,6 @@
 NUM_OF_BUTTONS = 3;
 NUM_OF_QUESTIONS = Array.from(document.querySelectorAll(".part .frequent .question")).length;
 
-
 // android 여부 확인
 function checkMobile() {
 
@@ -203,13 +202,8 @@ xmlHttp.onreadystatechange = function() {
 //지원하기 클릭시 실행함수
 let nameErrorTimeout = null;
 let phoneErrorTimeout = null;
-document.querySelector(".apply .submit").addEventListener("click", () => {
-    /*
-    //test코드
-    appearSoft(document.querySelector(".apply .pop-up-background"))    
-    appearSoft(document.querySelector(".apply .pop-up.pc"));
-    */
 
+function submit() {
     let part = document.querySelector(".apply .select-part span");
     let [name, phone] = document.querySelectorAll(".apply .sub input");
     if (!name.value) {
@@ -230,7 +224,7 @@ document.querySelector(".apply .submit").addEventListener("click", () => {
     }
     if (name.value && phone.value && phone.value.match(/.[(0-9)]{9,10}/)) {
         xmlHttp.open("POST", "https://lapi.dangjib.com/provider/inbound");
-        xmlHttp.setRequestHeader('Content-type', 'application/json')
+        xmlHttp.setRequestHeader('Content-type', 'application/json');
         let data = {
             "category": part.innerHTML,
             "name": name.value,
@@ -238,24 +232,25 @@ document.querySelector(".apply .submit").addEventListener("click", () => {
         }
         console.log(part.innerHTML, name.value, phone.value);
         xmlHttp.send(JSON.stringify(data));
-
     }
-})
+}
+document.querySelector(".apply .submit").addEventListener("click", submit);
 
 //지원하기 모바일버전 플로팅버튼 구현
 const TOP = 240;
 const BOTTOM = 3500;
 window.addEventListener('scroll', () => {
-    //스크롤을 할 때마다 로그로 현재 스크롤의 위치가 찍혀나온다.
     let floatingBtn = document.querySelector(".goto-apply-button.floating");
     if (window.innerWidth <= 800) {
         if (TOP <= window.scrollY && window.scrollY <= BOTTOM) {
             floatingBtn.style = "opacity: 1";
             floatingBtn.style.cursor = "pointer";
+            floatingBtn.style.zIndex = "2";
             document.querySelector(".floating-a").href = "#apply";
         } else if (window.scrollY < TOP || window.scrollY >= BOTTOM) {
             floatingBtn.style = "opacity: 0";
             floatingBtn.style.cursor = "default";
+            floatingBtn.style.zIndex = "-1";
             document.querySelector(".floating-a").href = "javascript:void(0);";
 
         }
