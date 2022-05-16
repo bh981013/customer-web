@@ -399,7 +399,7 @@ p {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 24px;
     margin: 0px 15px;
-    padding: 50px 30px;
+    padding: 50px 30px 50px 30px;
 }
 
 @media (max-width: 1340px) {
@@ -531,6 +531,7 @@ p {
 
 .step .text-box .mini {
     text-align: center;
+    height: auto;
     font-weight: 400;
     font-size: 16px;
     line-height: 23px;
