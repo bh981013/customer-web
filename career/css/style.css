@@ -411,8 +411,8 @@ p {
 
 @media (max-width: 800px) {
     .step .box {
-        display: grid;
         grid-template-columns: 134fr 216fr;
+        display: grid;
         grid-template-areas: "img text";
         height: 220px;
         border-radius: 0px;
